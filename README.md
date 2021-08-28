@@ -270,6 +270,20 @@ async def create_user(user_request: UserRequestModel):
 ## Get con id
 
 ```python
+# schemas.py
+
+from pydantic import BaseModel
+from typing import Optional
+
+class UserRequestModel(BaseModel):
+    username: str
+    email: Optional[str] = None # un campo opcional
+    
+class UserResponseModel(UserRequestModel):
+    id: int
+```
+
+```python
 # main.py
 
 @app.get("/users/{user_id}")
